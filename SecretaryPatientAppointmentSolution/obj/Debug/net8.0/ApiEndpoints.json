@@ -1,0 +1,100 @@
+[
+  {
+    "ContainingType": "SecretaryPatientAppointmentSolution.Controllers.ClinicController",
+    "Method": "CreateReservation",
+    "RelativePath": "api/Clinic",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservationData",
+        "Type": "SecretaryPatientAppointmentSolution.Dtos.ReservationData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SecretaryPatientAppointmentSolution.Controllers.ClinicController",
+    "Method": "GetSchedule",
+    "RelativePath": "api/Clinic/{docId}/{dayNo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "docId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dayNo",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[SecretaryPatientAppointmentSolution.Models.DoctorSlotsByDay, SecretaryPatientAppointmentSolution, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SecretaryPatientAppointmentSolution.Controllers.ClinicController",
+    "Method": "GetAllAppointments",
+    "RelativePath": "api/Clinic/appointments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[SecretaryPatientAppointmentSolution.Models.Appointment, SecretaryPatientAppointmentSolution, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SecretaryPatientAppointmentSolution.Controllers.ClinicController",
+    "Method": "GetAllDoctors",
+    "RelativePath": "api/Clinic/doctors",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SecretaryPatientAppointmentSolution.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[SecretaryPatientAppointmentSolution.WeatherForecast, SecretaryPatientAppointmentSolution, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]

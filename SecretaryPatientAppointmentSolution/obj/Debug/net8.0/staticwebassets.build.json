@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "mT4lfp9KpcclVr3rKKj6TmG9WmVO0Bpl/U0co7iVAfo=",
+  "Source": "SecretaryPatientAppointmentSolution",
+  "BasePath": "_content/SecretaryPatientAppointmentSolution",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
