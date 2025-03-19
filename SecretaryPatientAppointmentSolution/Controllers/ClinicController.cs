@@ -29,7 +29,7 @@ namespace SecretaryPatientAppointmentSolution.Controllers
         }
         //-------------------------------------//
         [HttpGet]
-        [Route("doctors")]
+        [Route("doctors")] 
         public IActionResult GetAllDoctors()
         {
             var Doctors  = dbContext.Doctors.ToList();
@@ -39,19 +39,17 @@ namespace SecretaryPatientAppointmentSolution.Controllers
         [HttpGet("{docId}/{dayNo}")]
         public async Task<ActionResult<List<DoctorSlotsByDay>>> GetSchedule(int docId, int dayNo)
         {
-            // Validate dayNo (0=Sunday, 6=Saturday)  
             if (dayNo < 0 || dayNo > 6)
             {
                 return BadRequest("Invalid day number. Must be between 0 (Sunday) and 6 (Saturday).");
             }
             try
             {
-                // Assuming Schedule is the entity that maps to the result of the stored procedure  
                 var schedules = await dbContext.DoctorSlotsByDay
                     .FromSqlRaw("EXEC LoadDoctorSlots @DocId = {0}, @DayNo = {1}", docId, dayNo)
                     .ToListAsync();
 
-                return Ok(schedules); // Return the found schedules  
+                return Ok(schedules);  
             }
             catch   {
                 return StatusCode(500, "An error occurred while retrieving the schedule.");
@@ -71,16 +69,10 @@ namespace SecretaryPatientAppointmentSolution.Controllers
                 return BadRequest("Invalid reservation data.");
             }
 
-            //if (reservationData != null && reservationData.SelectedSlots.Time != null)
-            //{
-
-            //    // If you sent `slotTime` as a string, convert it to TimeSpan  
-            //    TimeSpan timeSlot = TimeSpan.Parse(reservationData.SelectedSlots.Time.ToString());
-            //    reservationData.SelectedSlots.Time = timeSlot;
-            //}
-
+           
             string patientXml = ConvertToXml(reservationData.PatientData);
             string slotsXml = ConvertToXml(reservationData.SelectedSlots);
+
             // Clean the XML strings to remove unwanted namespaces  
             string cleanedPatientXml = CleanXml(patientXml);
             string cleanedSlotsXml = CleanXml(slotsXml);
@@ -104,25 +96,6 @@ EXEC  CreateReservation  @PatientDataXml , @SelectedSlotsXml";
             );
             await logStordProcedureExcution.logStordProcedureAsync(logFilePath, "Reservation created successfully.");
 
-//                // Fetch the created reservation's details right after inserting it  
-//                var savedReservation = await dbContext.Appointments
-//                    .OrderByDescending(r => r.AppointmentDate) // Assuming your model has a CreatedAt column  
-//                    .FirstOrDefaultAsync();
-//                if (savedReservation != null)
-//                { 
-//                    string savedReservationJson = JsonConvert.SerializeObject(savedReservation);
-
-//                    // Create a log entry for the saved reservation  
-//                    string savedLogJson = $@"  
-//{{  
-//    ""SavedReservation"": {savedReservationJson}  
-//}}";
-
-//                    // Log the saved data to the file  
-//                    await logStordProcedureExcution.logStordProcedureAsync(logFilePath, savedLogJson);
-//                }
-            
-
             return Ok();
             }
 
@@ -139,12 +112,9 @@ EXEC  CreateReservation  @PatientDataXml , @SelectedSlotsXml";
         [Route("appointments")]
         public async Task<ActionResult<List<Appointment>>> GetAllAppointments()
         {
-            
-                // Assuming Schedule is the entity that maps to the result of the stored procedure  
                 var Appointment = await dbContext.Appointments
                     .FromSqlRaw("EXEC LoadPatientAppointment")
                     .ToListAsync();
-
                 return Ok(Appointment); // Return the found Appointment  
 
         }
